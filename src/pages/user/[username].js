@@ -4,7 +4,7 @@ export const getStaticPaths = async () => {
 
     const paths = data.map(user => {
         return {
-            params: {id: user.id}
+            params: {username: user.username}
         }
     })
 
@@ -15,8 +15,8 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async (context) => {
-    const id = context.params.id;
-    const res = await fetch('http://localhost:3000/api/users/' + id);
+    const username = context.params.username;
+    const res = await fetch('http://localhost:3000/api/users/' + username);
     const data = await res.json();
 
     return {
