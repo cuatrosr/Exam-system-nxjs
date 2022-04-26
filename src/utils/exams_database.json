@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "subject": "Mathematics",
+        "questions": [
+             {
+                "id": 1,
+                "question": "What is 10 divided by 2?",
+                "answer": "5",
+                "correct": false,
+                "options": [ "2","3","6","8","9"]
+             },
+             {
+                "id": 2,
+                "question": "What is the sum of 60 + 5?",
+                "answer": "65",
+                "correct": false,
+                "options": [ "70","56","80","66","45"]
+             },
+             {
+                "id": 3,
+                "question": "What is five squared?",
+                "answer": "25",
+                "correct": false,
+                "options": [ "20","22","9","21","28"]
+             },
+             {
+                "id": 4,
+                "question": "What is the only even prime number?",
+                "answer": "2",
+                "correct": false,
+                "options": [ "1","4","2","0"]
+             },
+             {
+                "id": 5,
+                "question": "Is Pi a rational or irrational number?",
+                "answer": "irrational",
+                "correct": false,
+                "options": [ "rational"]
+             }
+         ]
+     },
+     {
+        "id": 2,
+        "subject": "Geography",
+        "questions": [
+             {
+                "id": 1,
+                "question": "Which country has the highest population?",
+                "answer": "China",
+                "correct": false,
+                "options": [ "India","China","USA","Russia"]
+             },
+             {
+                "id": 2,
+                "question": "Which is the longest river in the world?",
+                "answer": "The nile",
+                "correct":    false,
+                "options": [ "white river","Amazon","Yangtze"]
+             },
+             {
+                "id": 3,
+                "question": "Which is the coldest continent in the world?",
+                "answer": " Antarctica",
+                "correct": false,
+                "options": [ "North America","Africa","Europe","Asia"]
+             },
+             {
+                "id": 4,
+                "question": "Which is the world’s smallest country?",
+                "answer": "Vatican City",
+                "correct": false,
+                "options": [ "Monaco","San Marino","Liechtenstein", "Germany"]
+             },
+             {
+                "id": 5,
+                "question": "Which is the latitude that runs through the centre of the Earth?",
+                "answer": "Equator",
+                "correct": false,
+                "options": [ "North Pole","South Pole","Greenwich"]
+ 
+             }
+ 
+         ]
+         
+     },
+     {
+        "id": 1,
+        "subject": "Biology",
+        "questions": [
+             {
+                "id": 1,
+                "question": "Which famous scientist introduced the idea of natural selection?",
+                "answer": "Charles Darwin",
+                "correct": false,
+                "options": [ "Albert Einstein","Isaac Newton","Thomas Edison"]
+             },
+             {
+                "id": 2,
+                "question": "Can frogs live in salt water?",
+                "answer": "No",
+                "correct": false,
+                "options": [ "Yes","Depends","Maybe"]
+             },
+             {
+                "id": 3,
+                "question": "Animals which eat both plants and other animals are known as what?",
+                "answer": "Omnivores",
+                "correct": false,
+                "options": [ "Herbivores","Carnivores","Other"]
+             },
+             {
+                "id": 4,
+                "question": "A change of the DNA in an organism that results in a new trait is known as a?",
+                "answer": "Mutation",
+                "correct": false,
+                "options": [ "Transformation","Gene","Genetic"]
+             },
+             {
+                "id": 5,
+                "question": "A person who studies biology is known as a?",
+                "answer": "Biologist",
+                "correct": false,
+                "options": [ "Physicist","Chemist","Astronomer"]
+             }
+         ]
+     }
+  ]

@@ -4,7 +4,7 @@ import Header from '../../components/Header'
 import Link from 'next/link'
 
 function clicked(){
-    browserHistory.push('cexam')
+    browserHistory.push('exam')
 }
 
 export default function Teacher(){
@@ -12,7 +12,7 @@ export default function Teacher(){
         <div>
             <Header title='Teacher view'></Header>
             <main className={styles.main}>
-                <Link href='/teacher/cexam'><button type='button' class='btn btn-primary'>Crear examen</button></Link>
+                <Link href='/teacher/exam'><button type='button' class='btn btn-primary'>Crear examen</button></Link>
             </main>   
         </div>
     )
