@@ -21,6 +21,12 @@
   align-items: center;
 }
 
+.page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .footer a {
   display: flex;
   justify-content: center;

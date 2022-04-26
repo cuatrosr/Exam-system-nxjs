@@ -8,21 +8,21 @@
                 "question": "What is 10 divided by 2?",
                 "answer": "5",
                 "correct": false,
-                "options": [ "2","3","6","8","9"]
+                "options": [ "2","3","5","8"]
              },
              {
                 "id": 2,
                 "question": "What is the sum of 60 + 5?",
                 "answer": "65",
                 "correct": false,
-                "options": [ "70","56","80","66","45"]
+                "options": [ "70","56","80","65"]
              },
              {
                 "id": 3,
                 "question": "What is five squared?",
                 "answer": "25",
                 "correct": false,
-                "options": [ "20","22","9","21","28"]
+                "options": [ "20","25","9","21"]
              },
              {
                 "id": 4,
@@ -33,10 +33,10 @@
              },
              {
                 "id": 5,
-                "question": "Is Pi a rational or irrational number?",
-                "answer": "irrational",
+                "question": "What is 2 x 10?",
+                "answer": "20",
                 "correct": false,
-                "options": [ "rational"]
+                "options": [ "20","40","50","60"]
              }
          ]
      },
@@ -55,29 +55,29 @@
                 "id": 2,
                 "question": "Which is the longest river in the world?",
                 "answer": "The nile",
-                "correct":    false,
-                "options": [ "white river","Amazon","Yangtze"]
+                "correct": false,
+                "options": [ "White river","Amazon","Yangtze", "The nile"]
              },
              {
                 "id": 3,
                 "question": "Which is the coldest continent in the world?",
                 "answer": " Antarctica",
                 "correct": false,
-                "options": [ "North America","Africa","Europe","Asia"]
+                "options": [ "Antarctica","Africa","Europe","Asia"]
              },
              {
                 "id": 4,
                 "question": "Which is the world’s smallest country?",
                 "answer": "Vatican City",
                 "correct": false,
-                "options": [ "Monaco","San Marino","Liechtenstein", "Germany"]
+                "options": [ "Monaco","San Marino","Liechtenstein", "Vatican City"]
              },
              {
                 "id": 5,
                 "question": "Which is the latitude that runs through the centre of the Earth?",
                 "answer": "Equator",
                 "correct": false,
-                "options": [ "North Pole","South Pole","Greenwich"]
+                "options": [ "Equator","South Pole","Greenwich", "South Pole"]
  
              }
  
@@ -93,35 +93,35 @@
                 "question": "Which famous scientist introduced the idea of natural selection?",
                 "answer": "Charles Darwin",
                 "correct": false,
-                "options": [ "Albert Einstein","Isaac Newton","Thomas Edison"]
+                "options": [ "Albert Einstein","Charles Darwin","Thomas Edison", "Noah Chomsky"]
              },
              {
                 "id": 2,
                 "question": "Can frogs live in salt water?",
                 "answer": "No",
                 "correct": false,
-                "options": [ "Yes","Depends","Maybe"]
+                "options": [ "Yes","Depends","No", "Some of them"]
              },
              {
                 "id": 3,
                 "question": "Animals which eat both plants and other animals are known as what?",
                 "answer": "Omnivores",
                 "correct": false,
-                "options": [ "Herbivores","Carnivores","Other"]
+                "options": [ "Herbivores","Carnivores","Omnivores", "Not in the list"]
              },
              {
                 "id": 4,
                 "question": "A change of the DNA in an organism that results in a new trait is known as a?",
                 "answer": "Mutation",
                 "correct": false,
-                "options": [ "Transformation","Gene","Genetic"]
+                "options": [ "Transformation","Gene","Genetic", "Mutation"]
              },
              {
                 "id": 5,
                 "question": "A person who studies biology is known as a?",
                 "answer": "Biologist",
                 "correct": false,
-                "options": [ "Physicist","Chemist","Astronomer"]
+                "options": [ "Physicist","Chemist","Astronomer", "Biologist"]
              }
          ]
      }
