@@ -8,17 +8,16 @@ export default class QuestionsBox extends Component{
         function addComponent() {
             setComponents([...components, "Sample"])
         }
-    }
-/*
-    return (
-        <div>
-            <div>
-            {components.map((item, i) => (<Question/>))}
-            </div>
-            <div>
-                <button type='btn' class='btn btn-secondary' onClick={addComponent}>Agregar pregunta (+)</button>
-            </div>
-        </div>
-    ) */
 
+        return (
+            <div>
+                <div>
+                {components.map((item, i) => (<Question/>))}
+                </div>
+                <div>
+                    <button type='btn' class='btn btn-secondary' onClick={addComponent}>Agregar pregunta (+)</button>
+                </div>
+            </div>
+        ) 
+    }
 }

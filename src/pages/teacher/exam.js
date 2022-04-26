@@ -17,11 +17,22 @@ export default function createExam(){
                         <label for='accessCode' class='form-label'>Código de acceso</label>
                         <input type='password' class='form-control' id='accessCode'/>
                     </div>
+                    <div class='mb-3'>
+                        <label for='description' class='form-label'>Descripción</label>
+                        <input type='desc' class='form-control' id='descrip'/>
+                    </div>
                     <div class='text-center'>
                         {QuestionBox}
-                    </div>
-                    <Card>
+                        <Card>
                         <CardContent>
+                            <div class='mb-3'>
+                                <label for='Question1' class='form-label'>Pregunta 1</label>
+                                <input type='textquest' class="form-control" id='question1'/>
+                            </div>
+                            <div class='mb-3'>
+                                <label for='Respuesta1' class='form-label'>Respuestas:</label>
+                                <input type='textresp1' class="form-control" id='response1'/>
+                            </div>
                             <div class='text-center'>
                                 <button type='btn' class='btn btn-primary'>
                                     Crear pregunta
@@ -29,6 +40,7 @@ export default function createExam(){
                             </div>
                         </CardContent>
                     </Card>
+                    </div>
                 </form>
             </main>
         </div>
