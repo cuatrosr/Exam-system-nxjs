@@ -7,12 +7,12 @@ import {useRouter} from "next/router";
 export default function RegisterForm() {
     const router = useRouter();
     const handleSubmit = async (values) => {
+        
         console.log(values);
     };
     return (
         <div className={styles.login_box + ' p-3'}>
             <h1 className={styles.title_text + ' display-6 mb-3'}>Exam Platform</h1>
-
             <Formik
                 initialValues={{
                     username: '',

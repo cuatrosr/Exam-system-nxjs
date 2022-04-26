@@ -3,6 +3,10 @@ import styles from '../styles/form.module.css'
 import Link from "next/link";
 
 export default function LoginForm() {
+    const handleSubmit = async (values) => {
+
+        console.log(values);
+    };
     return (
         <div className={styles.login_box + ' p-3'}>
             <h1 className={styles.title_text}>Exam Platform</h1>
@@ -12,9 +16,7 @@ export default function LoginForm() {
                     username: '',
                     password: '',
                 }}
-                onSubmit={() => {
-
-                }}
+                onSubmit={handleSubmit}
             >
                 <Form>
                     <div className="mb-3">
