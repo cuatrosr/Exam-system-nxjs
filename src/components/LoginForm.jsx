@@ -1,10 +1,11 @@
 import {Formik, Field, Form} from "formik";
-import styles from '../styles/login-form.module.css'
+import styles from '../styles/form.module.css'
+import Link from "next/link";
 
 export default function LoginForm() {
     return (
         <div className={styles.login_box + ' p-3'}>
-            <h1 className="display-6 mb-3">Login</h1>
+            <h1 className={styles.title_text}>Exam Platform</h1>
 
             <Formik
                 initialValues={{
@@ -22,9 +23,17 @@ export default function LoginForm() {
                     <div className="mb-3">
                         <Field className="form-control" id="password" name="password" placeholder="Password" type="password"/>
                     </div>
-                    <button type="submit" className="btn btn-primary">Login</button>
+                    <div className="d-grid gap-0">
+                        <button type="submit" className="btn btn-secondary">Login</button>
+                    </div>
                 </Form>
             </Formik>
+            <p className={styles.href_div + ' text-center'}>
+                <span>¿Need an account? </span>
+                <Link href="/user/register">
+                    <a className={styles.href_text}>Sign up</a>
+                </Link>
+            </p>
         </div>
     )
 }
