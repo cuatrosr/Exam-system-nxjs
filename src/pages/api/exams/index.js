@@ -9,6 +9,8 @@ export default (req, res) => {
         case 'GET':
             return res.json(exams);
         case 'POST':
+            const body = JSON.parse(req.body);
+            console.log(body);
             create(body);
             return res.status(200);
         case 'DELETE':
