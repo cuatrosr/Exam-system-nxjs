@@ -1,12 +1,1 @@
-[
-  {
-    "username": "tcr",
-    "password": "psw",
-    "type": "teacher"
-  },
-  {
-    "username": "sdt",
-    "password": "psw",
-    "type": "student"
-  }
-]
+[]
