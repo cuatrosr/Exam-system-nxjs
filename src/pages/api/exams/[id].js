@@ -1,12 +1,13 @@
+
+let exams = require('../../../utils/exams_database.json');
+
 export default (req, res) => {
     const {method} = req;
+    let id = req.params.id;
     switch (method) {
         case 'GET':
-            return res.json('getting a unique task');
-        case 'PUT':
-            return res.json('updating a unique task');
-        case 'DELETE':
-            return res.json('deleting a unique task');
+            let exam = exams.find(x => x.id.toString() === id.toString());
+            return exam;
         default:
             return res.status(400).json('method not allowed');
     }
