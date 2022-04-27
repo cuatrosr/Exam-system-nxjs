@@ -4,11 +4,38 @@ import QuestionBox from '../../components/QuestionsBox'
 import {Card, CardContent} from '@mui/material'
 
 export default function createExam(){
+    const newExam = event => {
+        event.preventDefault();
+
+        const endpoint = '/api/exams';
+        const JSONdata = {
+            title: document.getElementById('formularyName').value,
+            description: document.getElementById('descrip').value,
+            accessCode: document.getElementById('accessCode').value,
+            questions: [],
+          }
+
+        const options = {
+            // The method is POST because we are sending data.
+            method: 'POST',
+            // Tell the server we're sending JSON.
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            // Body of the request is the JSON data we created above.
+            body: JSONdata,
+        }
+        const res = await fetch(endpoint, options);
+        // TODO finish this
+    }
+
+    
+
     return(
         <div>
             <Header title='Create exam'/>
             <main className={styles.main}>
-                <form>
+                <form onSubmit={newExam}>
                     <div class='text-center'>
                         <label for='formularyName' class='form-label'>Nombre del formulario</label>
                         <input type='text' class="form-control" id='formularyName'/>
