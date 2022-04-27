@@ -8,17 +8,24 @@ export default (req, res) => {
         case 'GET':
             return res.status(200).json(db);
         case 'POST':
-            db.push({
-                username: body.username,
-                password: body.password,
-                type: body.type
-            });
-            console.log(db);
-            fs.writeFileSync(path, JSON.stringify(db));
-            return res.status(200).json({
-                username: body.username,
-                type: body.type
-            });
+            let ret = db.find(user => user.username === body.username);
+            if (ret === undefined) {
+                db.push({
+                    username: body.username,
+                    password: body.password,
+                    type: body.type
+                });
+                fs.writeFileSync(path, JSON.stringify(db));
+                return res.status(200).json({
+                    username: body.username,
+                    type: body.type
+                });
+            } else {
+                return res.status(400).json({
+                    username: body.username,
+                    type: body.type
+                });
+            }
         default:
             return res.status(400).json('method not allowed');
     }

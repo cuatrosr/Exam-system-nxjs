@@ -3,12 +3,38 @@ import styles from '../styles/form.module.css'
 import Link from "next/link";
 import {RegistrationSchema} from "../schema/registration.schema";
 import {useRouter} from "next/router";
+const Swal = require('sweetalert2');
 
 export default function RegisterForm() {
     const router = useRouter();
-    const handleSubmit = async (values) => {
-        
-        console.log(values);
+    const handleSubmit = async (values, {resetForm}) => {
+        let config = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+        }
+        const res = await fetch('/api/users', config);
+        const data = await res.json();
+        if (res.status === 200) {
+            Swal.fire({
+                icon: 'success',
+                text: 'The user has been registered',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            await router.push('/user');
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: `The user ${data.username} is already registered`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            resetForm();
+        }
     };
     return (
         <div className={styles.login_box + ' p-3'}>
