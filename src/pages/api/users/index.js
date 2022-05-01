@@ -1,25 +1,25 @@
-const fs = require('fs');
-const path = 'src/utils/user_database.json';
+import {conn} from '../../../utils/database';
 
-export default (req, res) => {
+export default async (req, res) => {
     const {method, body} = req;
-    let db = JSON.parse(fs.readFileSync(path));
     switch (method) {
         case 'GET':
-            return res.status(200).json(db);
+            try {
+                const query = 'SELECT * FROM users';
+                const response = await conn.query(query);
+                return res.status(200).json(response.rows);
+            } catch (e) {
+                console.log(e.message);
+                return res.status(400).json('error');
+            }
         case 'POST':
-            let ret = db.find(user => user.username === body.username);
-            if (ret === undefined) {
-                db.push({
-                    username: body.username,
-                    password: body.password,
-                    type: body.type
-                });
-                fs.writeFileSync(path, JSON.stringify(db));
-                return res.status(200).json({
-                    username: body.username,
-                    type: body.type
-                });
+            const query = 'SELECT * FROM users u WHERE u.username=' + "'" + body.username + "'";
+            const response = await conn.query(query);
+            if (response.rows[0] === undefined) {
+                const query = 'INSERT INTO users(username, password, user_type) VALUES ($1, $2, $3) RETURNING *';
+                const values = [body.username, body.password, body.type];
+                const response = await conn.query(query, values);
+                return res.status(200).json(response.rows[0]);
             } else {
                 return res.status(400).json({
                     username: body.username,
