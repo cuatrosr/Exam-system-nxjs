@@ -12,7 +12,7 @@ export default function Teacher(){
         <div>
             <Header title='Teacher view'></Header>
             <main className={styles.main}>
-                <Link href='/teacher/exam'><button type='button' class='btn btn-primary'>Crear examen</button></Link>
+                <Link href='/teacher/exam'><button type='button' className='btn btn-primary'>Crear examen</button></Link>
             </main>   
         </div>
     )
