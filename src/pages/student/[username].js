@@ -4,7 +4,6 @@ import code from "../../components/Code";
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Link from "next/Link";
 import Header from "../../components/Header";
-import Teacher from "../teacher";
 
 export default function Student({ data }){
     return(
