@@ -7,13 +7,29 @@ function clicked(){
     browserHistory.push('exam')
 }
 
-export default function Teacher(){
-    return(
+export default function Teacher({ data }) {
+    return (
         <div>
             <Header title='Teacher view'></Header>
             <main className={styles.main}>
-                <Link href='/teacher/exam'><button type='button' className='btn btn-primary'>Crear examen</button></Link>
-            </main>   
+                <h1>¡Hello teacher {data.username}!</h1>
+                <Link href='/teacher/exam'>
+                    <button type='button' className='btn btn-primary'>Crear examen</button>
+                </Link>
+            </main>
         </div>
     )
+}
+
+Teacher.getInitialProps = async (req, res) => {
+    let config = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    }
+    const response = await fetch('http://localhost:3000/api/users/' + req.query.username, config);
+    const data = await response.json();
+    return { data };
 }

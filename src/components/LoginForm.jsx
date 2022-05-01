@@ -24,6 +24,11 @@ export default function LoginForm() {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                if (data.user_type === 'teacher') {
+                    await router.push('/teacher?' + 'username=' + values.username);
+                } else {
+                    await router.push('/student?' + 'username=' + values.username);
+                }
             } else {
                 Swal.fire({
                     icon: 'error',

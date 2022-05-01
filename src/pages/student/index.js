@@ -4,15 +4,16 @@ import code from "../../components/Code";
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Link from "next/Link";
 import Header from "../../components/Header";
+import Teacher from "../teacher";
 
-export default function Student(){
+export default function Student({ data }){
     return(
 
         <body>
             <div className="container w-75 bg-primary mt-5 rounded shadow">
                 <div className="row-cols-1">
                     <div className="text-end"></div>
-
+                    <h1>¡Hello student {data.username}!</h1>
                     <h2 className="fw-bold text-center">EXAM TO STUDENTS</h2>
 
                     <form action="#">
@@ -30,4 +31,17 @@ export default function Student(){
         </body>
 
     );
+}
+
+Student.getInitialProps = async (req, res) => {
+    let config = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    }
+    const response = await fetch('http://localhost:3000/api/users/' + req.query.username, config);
+    const data = await response.json();
+    return { data };
 }
