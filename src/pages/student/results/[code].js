@@ -5,7 +5,7 @@ import Link from "next/link";
 import {Formik, Field, Form} from "formik";
 import {values} from "pg/lib/native/query";
 import {useRouter} from "next/router";
-import Student from "../principal/[username]";
+import Student from "../[username]";
 
 export default function exam({data}) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -26,7 +26,16 @@ export default function exam({data}) {
     );
 }
 
-exam.getInitialProps = async (req, res) => {
+export async function getStaticPaths(){
+    try{
+        const res = await fetch('http://localhost:3000/api/users/');
+    }catch (error){
+        console.log(error)
+    }
+}
+
+
+/*exam.getInitialProps = async (req, res) => {
     let config = {
         method: 'GET',
         headers: {
@@ -37,5 +46,5 @@ exam.getInitialProps = async (req, res) => {
     const response = await fetch('http://localhost:3000/api/users' + req.query.username, config);
     const data = await response.json();
     return { data };
-}
+}*/
 

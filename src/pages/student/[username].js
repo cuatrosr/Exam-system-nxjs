@@ -1,16 +1,35 @@
 import {Component} from 'react'
-import examForm from "../../../components/ExamForm";
-import code from "../../../components/Code";
+import examForm from "../../components/ExamForm";
+import code from "../../components/Code";
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Link from "next/Link";
-import Header from "../../../components/Header";
+import Header from "../../components/Header";
 import {Formik, Field, Form} from "formik";
 import {useRouter} from "next/router";
+import Swal from "sweetalert2";
+import access_code from "../api/exams/[access_code]";
 
 export default function Student({data}) {
     const router = useRouter();
     const handleSubmit = async (values, {resetForm}) => {
-        await router.push('/student/results'+values.code);
+        if(values.code === data.access_code){
+            Swal.fire({
+                icon: 'success',
+                text: 'Logged in',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            await router.push('/student/'+values.code);
+        }else{
+            Swal.fire({
+                icon: 'error',
+                text: `User ${data.code} doesn't exist`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
     };
 
     return (
@@ -40,6 +59,36 @@ export default function Student({data}) {
 
 
     );
+}
+
+export async function getStaticPaths(){
+    try{
+        const res = await fetch('http://localhost:3000/api/exams');
+         const data = await res.json()
+        const paths = data.map(({access_code}) => ({params: {accessCode: `${access_code}`}}))
+        return{
+             paths,
+            fallback: false
+        }
+
+    }catch (error){
+        console.log(error)
+    }
+}
+
+export async function getStaticProps({params}){
+    try{
+      const res = await fetch('http://localhost:3000/api/exams/'+params.access_code)
+        const data = await res.json();
+      return{
+          props:{
+              data,
+          },
+      };
+
+    }catch (error){
+        console.log(error);
+    }
 }
 
 Student.getInitialProps = async (req, res) => {

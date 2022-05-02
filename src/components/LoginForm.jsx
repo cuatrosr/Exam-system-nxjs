@@ -27,7 +27,7 @@ export default function LoginForm() {
                 if (data.user_type === 'teacher') {
                     await router.push('/teacher/' + values.username);
                 } else {
-                    await router.push('/student/principal/' + values.username);
+                    await router.push('/student/' + values.username);
                 }
             } else {
                 Swal.fire({
