@@ -1,8 +1,9 @@
 import {Formik, Field, Form} from "formik";
 import styles from '../styles/form.module.css'
 import Link from "next/link";
-import {RegistrationSchema} from "../schema/registration.schema";
 import {useRouter} from "next/router";
+import * as Yup from "yup";
+
 const Swal = require('sweetalert2');
 
 export default function RegisterForm() {
@@ -46,7 +47,12 @@ export default function RegisterForm() {
                     type: 'teacher',
                 }}
                 onSubmit={handleSubmit}
-                validationSchema={RegistrationSchema}
+                validationSchema={
+                    Yup.object().shape({
+                        username: Yup.string().required('This field is required'),
+                        password: Yup.string().required('This field is required').min(6, 'Should be at least 6 characters'),
+                    })
+                }
             >
                 {({values, errors, touched}) => (
                     <Form>

@@ -94,12 +94,22 @@ export default function TeacherExamForm({user}) {
                                        aria-describedby="descriptionHelp"/>
                             </div>
                             <div className="mb-3">
-                                <Field className="form-control" id="description" name="description"
-                                       placeholder="Description"/>
+                                <Field className="form-control" id="question_percentage" name="question_percentage"
+                                       placeholder="Question Percentage" type="number" min="0" max="100" pattern="\d+"/>
                             </div>
                             <div className="mb-3">
-                                <Field className="form-control" id="access_code" name="access_code"
-                                       placeholder="Access code"/>
+                                <Field className="form-control" id="correct_answer" name="correct_answer"
+                                       placeholder="Correct Answer"/>
+                            </div>
+                            <div className="mb-3">
+                                <Field className="form-control" id="option1" name="option1"
+                                       placeholder="First Option"/>
+                                <Field className="form-control" id="option2" name="option2"
+                                       placeholder="Second Option"/>
+                                <Field className="form-control" id="option3" name="option3"
+                                       placeholder="Third Option"/>
+                                <Field className="form-control" id="option4" name="option4"
+                                       placeholder="Fourth Option"/>
                             </div>
                             <div className={'d-grid gap-0'}>
                                 <button type="submit" className="btn btn-secondary">Submit</button>
