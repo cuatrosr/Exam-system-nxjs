@@ -1,40 +1,36 @@
-const fs = require('fs');
+import {conn} from '../../../utils/database';
 
-let exams = require('../../../utils/exams_database.json');
-
-export default (req, res) => {
+export default async (req, res) => {
     const { method , body} = req;
 
     switch (method) {
         case 'GET':
-            return res.json(exams);
+            try {
+                const query = 'SELECT * FROM exams';
+                const response = await conn.query(query);
+                return res.status(200).json(response.rows);
+            } catch (e) {
+                console.log(e.message);
+                return res.status(400).json('error');
+            }
         case 'POST':
-            const body = JSON.parse(req.body);
-            console.log(body);
-            create(body);
-            return res.status(200);
-        case 'DELETE':
-            _delete(body.id);
+            const query = 'SELECT * FROM exams e WHERE e.access_code=$1';
+            const values = [req.query.access_code];
+            const response = await conn.query(query, values);
+            if (response.rows[0] === undefined) {
+
+                const {title, description, access_code, id_creator} = body;
+                const query = 'INSERT INTO exams(access_code, id_creator, title, description) VALUES ($1, $2, $3, $4) RETURNING *';
+                const values = [access_code, id_creator, title, description];
+                const response = await conn.query(query, values);
+                return res.status(200).json(response.rows[0]);
+            } else {
+                return res.status(400).json({
+                    access_code: body.access_code,
+                    id_creator: body.id_creator
+                });
+            }
         default:
             return res.status(404).json('invalid method');
     }
 };
-
-function create(exam) {
-    // TODO validate exam
-    exam.id = exams.length ? Math.max(...exams.map(x => x.id)) + 1 : 1;
-    exams.push(exam);   
-    saveData();
-}
-
-function _delete(id) {
-    // filter out deleted exam and save
-    exams = exams.filter(x => x.id.toString() !== id.toString());
-    saveData();
-    
-}
-
-function saveData() {
-    fs.writeFileSync('../../../utils/exams_database.json', JSON.stringify(exams, null, 4));
-}
-
