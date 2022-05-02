@@ -1,22 +1,20 @@
-import {Component} from 'react'
 import styles from '../../styles/Home.module.css'
 import Header from '../../components/Header'
-import Link from 'next/link'
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import TeacherExamForm from "../../components/TeacherExamForm";
+import TeacherQuestionForm from "../../components/TeacherQuestionForm";
+import LoginForm from "../../components/LoginForm";
 
-function clicked(){
-    browserHistory.push('exam')
-}
-
-export default function Teacher({ data }) {
+const Teacher = ({data}) => {
     return (
         <div>
             <Header title='Teacher view'></Header>
+            <Nav/>
             <main className={styles.main}>
-                <h1>¡Hello teacher {data.username}!</h1>
-                <Link href='/teacher/exam'>
-                    <button type='button' className='btn btn-primary'>Crear examen</button>
-                </Link>
+                <TeacherExamForm user={data}/>
             </main>
+            <Footer/>
         </div>
     )
 }
@@ -31,5 +29,7 @@ Teacher.getInitialProps = async (req, res) => {
     }
     const response = await fetch('http://localhost:3000/api/users/' + req.query.username, config);
     const data = await response.json();
-    return { data };
+    return {data};
 }
+
+export default Teacher;
