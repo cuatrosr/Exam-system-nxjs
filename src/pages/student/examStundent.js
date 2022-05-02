@@ -5,7 +5,8 @@ import Link from "next/link";
 
 export default function exam(){
     return(
-        <body>
+
+
         <div className="container w-75 bg-secondary mt-5">
             <div className="row">
                 <div className="col-3">
@@ -27,7 +28,6 @@ export default function exam(){
                 </div>
             </div>
         </div>
-        </body>
     );
 }
 

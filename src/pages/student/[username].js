@@ -6,9 +6,8 @@ import Link from "next/Link";
 import Header from "../../components/Header";
 
 export default function Student({ data }){
-    return(
 
-        <body>
+    return(
             <div className="container w-75 bg-primary mt-5 rounded shadow">
                 <div className="row-cols-1">
                     <div className="text-end"></div>
@@ -27,7 +26,7 @@ export default function Student({ data }){
                     </form>
                 </div>
             </div>
-        </body>
+
 
     );
 }
