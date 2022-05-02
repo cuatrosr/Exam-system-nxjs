@@ -1,4 +1,4 @@
-import {Component} from 'react'
+
 import examForm from "../../components/ExamForm";
 import code from "../../components/Code";
 // eslint-disable-next-line @next/next/no-document-import-in-page
@@ -7,28 +7,15 @@ import Header from "../../components/Header";
 import {Formik, Field, Form} from "formik";
 import {useRouter} from "next/router";
 import Swal from "sweetalert2";
-import access_code from "../api/exams/[access_code]";
+import React from 'react';
 
-export default function Student({data}) {
+export default function Username({data}) {
+
+
     const router = useRouter();
     const handleSubmit = async (values, {resetForm}) => {
-        if(values.code === data.access_code){
-            Swal.fire({
-                icon: 'success',
-                text: 'Logged in',
-                showConfirmButton: false,
-                timer: 1500
-            });
 
             await router.push('/student/'+values.code);
-        }else{
-            Swal.fire({
-                icon: 'error',
-                text: `User ${data.code} doesn't exist`,
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
 
     };
 
@@ -63,9 +50,10 @@ export default function Student({data}) {
 
 export async function getStaticPaths(){
     try{
-        const res = await fetch('http://localhost:3000/api/exams');
+        const res = await fetch('http://localhost:3000/api/users');
          const data = await res.json()
-        const paths = data.map(({access_code}) => ({params: {accessCode: `${access_code}`}}))
+        console.log(data)
+        const paths = data.map(({username}) => ({params: {username: `${username}`}}))
         return{
              paths,
             fallback: false
@@ -78,8 +66,9 @@ export async function getStaticPaths(){
 
 export async function getStaticProps({params}){
     try{
-      const res = await fetch('http://localhost:3000/api/exams/'+params.access_code)
+      const res = await fetch('http://localhost:3000/api/users/'+params.username)
         const data = await res.json();
+        console.log(data);
       return{
           props:{
               data,
@@ -91,7 +80,7 @@ export async function getStaticProps({params}){
     }
 }
 
-Student.getInitialProps = async (req, res) => {
+/*Student.getInitialProps = async (req, res) => {
     let config = {
         method: 'GET',
         headers: {
@@ -102,4 +91,4 @@ Student.getInitialProps = async (req, res) => {
     const response = await fetch('http://localhost:3000/api/users/' + req.query.username, config);
     const data = await response.json();
     return {data};
-}
+}*/
