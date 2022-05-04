@@ -25,7 +25,7 @@ export default function exam({data}) {
                         }}
                         onSubmit={handleSubmit}
                     >
-                        <h2 className="fw-bold text-center">Realiza el examen {data.acces_code}</h2>
+                        <h2 className="fw-bold text-center">Realiza el examen {data.access_code}</h2>
                     </Formik>
 
 
@@ -37,7 +37,7 @@ export default function exam({data}) {
 
 export async function getStaticPaths(){
     try{
-        const res = await fetch('http://localhost:3000/api/exam');
+        const res = await fetch('http://localhost:3000/api/exams');
         const data = await res.json()
         console.log(data)
         const paths = data.map(({access_code}) => ({params: {accessCode: `${access_code}`}}))

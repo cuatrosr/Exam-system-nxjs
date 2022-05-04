@@ -8,14 +8,60 @@ import {Formik, Field, Form} from "formik";
 import {useRouter} from "next/router";
 import Swal from "sweetalert2";
 import React from 'react';
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import ExamForm from "../../components/ExamForm";
 
-export default function Username({data}) {
+
+import styles from '../../styles/Home.module.css'
+
+const Student = ({data}) => {
+    return(
+        <div>
+            <Header title = 'Student view'></Header>
+            <Nav/>
+            <main className={styles.main}>
+                <ExamForm user={data}/>
+            </main>
+            <Footer/>
+        </div>
+    )
+}
+
+Student.getInitialProps = async (req, res) => {
+    let config = {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    }
+
+    const response = await fetch('http://localhost:3000/api/users/' + req.query.username, config);
+    const data = await response.json();
+    return {data};
+}
+
+export default Student;
+
+
+
+
+
+
+
+
+
+
+
+/*export default function Username({data}) {
 
 
     const router = useRouter();
     const handleSubmit = async (values, {resetForm}) => {
-
-            await router.push('/../user');
+        const res = await fetch('/api/exams', config);
+        const code = await res.json();
+            await router.push('/student/exam'+code.access_code+'?username=' + data.username);
 
     };
 
@@ -78,7 +124,7 @@ export async function getStaticProps({params}){
     }catch (error){
         console.log(error);
     }
-}
+}*/
 
 /*Student.getInitialProps = async (req, res) => {
     let config = {
