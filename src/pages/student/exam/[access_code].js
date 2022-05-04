@@ -1,11 +1,11 @@
-import examForm from "../../components/ExamForm";
-import Header from "../../components/Header";
-import styles from "../../styles/Home.module.css";
+import examForm from "../../../components/ExamForm";
+import Header from "../../../components/Header";
+import styles from "../../../styles/Home.module.css";
 import Link from "next/link";
 import {Formik, Field, Form} from "formik";
 import {values} from "pg/lib/native/query";
 import {useRouter} from "next/router";
-import Student from "./[username]";
+import Student from "../[username]";
 import React from 'react';
 
 export default function exam({data}) {
