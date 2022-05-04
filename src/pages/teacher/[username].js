@@ -3,8 +3,6 @@ import Header from '../../components/Header'
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import TeacherExamForm from "../../components/TeacherExamForm";
-import TeacherQuestionForm from "../../components/TeacherQuestionForm";
-import LoginForm from "../../components/LoginForm";
 
 const Teacher = ({data}) => {
     return (

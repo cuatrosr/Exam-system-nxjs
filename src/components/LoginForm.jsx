@@ -3,8 +3,7 @@ import styles from '../styles/form.module.css'
 import Link from "next/link";
 import {useRouter} from "next/router";
 import * as Yup from "yup";
-
-const Swal = require('sweetalert2');
+import Swal from "sweetalert2";
 
 export default function LoginForm() {
     const router = useRouter();
