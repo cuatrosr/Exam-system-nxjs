@@ -24,7 +24,7 @@ export default function TeacherExamForm({user}) {
                 showConfirmButton: false,
                 timer: 1500
             });
-            await router.push('/teacher/exam/' + data.access_code + '?user=' + user.username);
+            await router.push('/teacher/exam/' + data.access_code + '?username=' + user.username);
         } else {
             if (data.message !== undefined) {
                 Swal.fire({
