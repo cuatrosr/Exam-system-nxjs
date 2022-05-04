@@ -15,7 +15,7 @@ export default function Username({data}) {
     const router = useRouter();
     const handleSubmit = async (values, {resetForm}) => {
 
-            await router.push('/student/'+values.code);
+            await router.push('/../user');
 
     };
 
