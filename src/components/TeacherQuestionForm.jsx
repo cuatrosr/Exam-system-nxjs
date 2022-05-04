@@ -2,19 +2,54 @@ import styles from "../styles/form.module.css";
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
+import {useRouter} from "next/router";
 
 export default function TeacherQuestionForm({user, exam}) {
+    const router = useRouter();
     const handleSubmit = async (values, {resetForm}) => {
         if (values.correct_answer === values.option1 || values.correct_answer === values.option2
             || values.correct_answer === values.option3 || values.correct_answer === values.option4) {
-            let decimal_percentage = values.question_percentage/100;
+            let decimal_percentage = values.question_percentage / 100;
             const question = {
                 description: values.description, option1: values.option1,
                 option2: values.option2, option3: values.option3, option4: values.option4,
                 correct_answer: values.correct_answer, question_percentage: decimal_percentage,
                 id_exam: exam.id
             };
-
+            let config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(question)
+            }
+            const res = await fetch('/api/questions', config);
+            const data = await res.json();
+            if (res.status === 200) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Question added successfully',
+                    text: "¿Do you want to add another question to the exam?",
+                    showDenyButton: true,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: 'No',
+                    confirmButtonColor: '#6C757D',
+                    denyButtonColor: '#808080'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        resetForm();
+                    } else if (result.isDenied) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: `The exam ${exam.access_code} with the questions was created successfully`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        router.push('/teacher/' + user.username);
+                    }
+                })
+            }
         } else {
             Swal.fire({
                 icon: 'error',
