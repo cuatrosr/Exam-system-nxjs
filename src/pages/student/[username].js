@@ -1,34 +1,26 @@
-import {Component} from 'react'
-import examForm from "../../components/ExamForm";
-import code from "../../components/Code";
-// eslint-disable-next-line @next/next/no-document-import-in-page
-import Link from "next/Link";
 import Header from "../../components/Header";
+import Nav from "../../components/Nav";
+import Footer from "../../components/Footer";
+import ExamForm from "../../components/ExamForm";
+import ResultForm from "../../components/ResultForm";
+import styles from '../../styles/Home.module.css';
 
-export default function Student({ data }){
-
-    return(
-            <div className="container w-75 bg-primary mt-5 rounded shadow">
-                <div className="row-cols-1">
-                    <div className="text-end"></div>
-                    <h1>¡Hello student {data.username}!</h1>
-                    <h2 className="fw-bold text-center">EXAM TO STUDENTS</h2>
-
-                    <form action="#">
-                        <div className="mb-4">
-                            <label htmlFor="code" className="form-label">Code of the exam</label>
-                            <input type="code" className="form-control" name="codeExam"/>
-                        </div>
-                        <div className="d-grid ">
-                            <Link href="/student/examStudent"><button type="submit" className="btn btn-primary bg-gradient">Start</button></Link>
-
-                        </div>
-                    </form>
+const Student = ({data}) => {
+    return (
+        <div>
+            <Header title='Student view'></Header>
+            <Nav/>
+            <main className={styles.main}>
+                <div className="container">
+                    <div className="row justify-content-around">
+                        <ExamForm user={data}/>
+                        <ResultForm user={data}/>
+                    </div>
                 </div>
-            </div>
-
-
-    );
+            </main>
+            <Footer/>
+        </div>
+    )
 }
 
 Student.getInitialProps = async (req, res) => {
@@ -41,5 +33,7 @@ Student.getInitialProps = async (req, res) => {
     }
     const response = await fetch('http://localhost:3000/api/users/' + req.query.username, config);
     const data = await response.json();
-    return { data };
+    return {data};
 }
+
+export default Student;

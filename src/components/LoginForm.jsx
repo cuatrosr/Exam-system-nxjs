@@ -2,7 +2,8 @@ import {Formik, Field, Form} from "formik";
 import styles from '../styles/form.module.css'
 import Link from "next/link";
 import {useRouter} from "next/router";
-const Swal = require('sweetalert2');
+import * as Yup from "yup";
+import Swal from "sweetalert2";
 
 export default function LoginForm() {
     const router = useRouter();
@@ -56,18 +57,34 @@ export default function LoginForm() {
                     password: ''
                 }}
                 onSubmit={handleSubmit}
+                validationSchema={
+                    Yup.object().shape({
+                        username: Yup.string().required('This field is required'),
+                        password: Yup.string().required('This field is required').min(6, 'Should be at least 6 characters'),
+                    })
+                }
             >
-                <Form>
-                    <div className="mb-3">
-                        <Field className="form-control" id="username" name="username" placeholder="Username" aria-describedby="usernameHelp"/>
-                    </div>
-                    <div className="mb-3">
-                        <Field className="form-control" id="password" name="password" placeholder="Password" type="password"/>
-                    </div>
-                    <div className="d-grid gap-0">
-                        <button type="submit" className="btn btn-secondary">Login</button>
-                    </div>
-                </Form>
+                {({values, errors, touched}) => (
+                    <Form>
+                        <div className="mb-3">
+                            <Field className="form-control" id="username" name="username" placeholder="Username"
+                                   aria-describedby="usernameHelp"/>
+                            {errors.username && touched.username ? (
+                                <div className="validation-error">{errors.username}</div>
+                            ) : null}
+                        </div>
+                        <div className="mb-3">
+                            <Field className="form-control" id="password" name="password" placeholder="Password"
+                                   type="password"/>
+                            {errors.password && touched.password ? (
+                                <div className="validation-error">{errors.password}</div>
+                            ) : null}
+                        </div>
+                        <div className="d-grid gap-0">
+                            <button type="submit" className="btn btn-secondary">Login</button>
+                        </div>
+                    </Form>
+                )}
             </Formik>
             <p className={styles.href_div + ' text-center'}>
                 <span>¿Need an account? </span>
