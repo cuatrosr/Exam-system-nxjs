@@ -2,22 +2,45 @@ import styles from "../styles/form.module.css"
 import * as Yup from "yup";
 import {useRouter} from "next/router";
 import {Formik, Field, Form} from "formik";
+import Swal from "sweetalert2";
 
 export default function ExamForm({user}) {
     const router = useRouter();
     const handleSubmit = async (values, {resetForm}) => {
         let config = {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
+            }
         }
-        const res = await fetch('/api/exams', config)
-        const data = await res.json();
-
-        await router.push('/student/exam/' + data.access_code + '?username=' + user.username)
+        let res = await fetch('/api/exams/' + values.access_code, config);
+        if (res.status === 200) {
+            res = await fetch('/api/questions/' + values.access_code, config);
+            if (res.status === 200) {
+                Swal.fire({
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                await router.push('/student/exam/' + values.access_code + '?username=' + user.username);
+            } else {
+                Swal.fire({
+                    icon: 'question',
+                    title: 'contact your teacher',
+                    text: 'the exam does not have questions',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: 'The exam does not exist',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     };
     return (
         <div className={styles.login_box + ' p-3 align-self-center'}>
