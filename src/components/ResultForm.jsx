@@ -14,14 +14,10 @@ export default function ExamForm({user}) {
             },
             body: JSON.stringify(values)
         }
-        const res = await fetch('/api/exams', config)
-        const data = await res.json();
-
-        await router.push('/student/exam/' + data.access_code + '?username=' + user.username)
     };
     return (
         <div className={styles.login_box + ' p-3 align-self-center'}>
-            <h2 className={styles.title_text}>Take an exam</h2>
+            <h2 className={styles.title_text}>Exam grade</h2>
             <Formik
                 initialValues={{
                     access_code: ''
@@ -42,7 +38,7 @@ export default function ExamForm({user}) {
                             ) : null}
                         </div>
                         <div className={'d-grid gap-0'}>
-                            <button type="submit" className="btn btn-secondary">Start</button>
+                            <button type="submit" className="btn btn-secondary">Consult</button>
                         </div>
                     </Form>
                 )}
