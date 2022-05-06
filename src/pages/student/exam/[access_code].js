@@ -1,31 +1,18 @@
-import {Formik, Field, Form} from "formik";
-import {useRouter} from "next/router";
-import React from 'react';
+import Header from "../../../components/Header";
+import Nav from "../../../components/Nav";
+import styles from "../../../styles/Home.module.css";
+import StudentExam from "../../../components/StudentExam";
+import Footer from "../../../components/Footer";
 
 export default function Exam({user, exam, questions}) {
-    const router = useRouter();
-    const handleSubmit = async (values, {resetForm}) => {
-        await router.push('/student/results/' + values.username);
-    };
     return (
-        <div className="container w-75 bg-secondary mt-5">
-            <div className="row">
-                {questions.map(q => (
-                    <div key={q.id}>
-                        {q.description}
-                    </div>
-                ))};
-                <div className="col-3">
-                    <Formik
-                        initialValues={{
-                            code: ''
-                        }}
-                        onSubmit={handleSubmit}
-                    >
-                        <h2 className="fw-bold text-center">Realiza el examen</h2>
-                    </Formik>
-                </div>
-            </div>
+        <div>
+            <Header title='Teacher view'></Header>
+            <Nav/>
+            <main className={styles.main}>
+                <StudentExam user={user} exam={exam} questions={questions}/>
+            </main>
+            <Footer/>
         </div>
     );
 }
