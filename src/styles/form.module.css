@@ -1,7 +1,14 @@
 .login_box {
     box-shadow: 0px 0px 5px 1px lightgray;
     border-radius: 25px 25px;
-    width: 340px;
+    width: 25%;
+    background-color: #fff;
+}
+
+.options_box {
+    box-shadow: 0px 0px 5px 1px lightgray;
+    border-radius: 25px 25px;
+    width: 90%;
     background-color: #fff;
 }
 

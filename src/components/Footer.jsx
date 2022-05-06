@@ -1,12 +1,12 @@
 import styles from "../styles/Home.module.css";
 
-export default function footer(){
-    return(
-        <div className={styles.footer}>
-            <div>
-                <a href="#">This is a plataform to do it exams.</a>
+export default function Footer() {
+    return (
+        <footer>
+            <div className=' text-center p-3 border-top border-white' style={{background: '#eaeaea'}}>
+                <strong>© 2022 Copyright</strong>
             </div>
-        </div>
+        </footer>
     );
 }
 
