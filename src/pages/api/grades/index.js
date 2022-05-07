@@ -13,9 +13,8 @@ export default async (req, res) => {
                 return res.status(400).json('error');
             }
         case 'POST':
-            const {grade} = body;
-            const query = 'INSERT INTO questions(grade) VALUES ($1) RETURNING *';
-            const values = [grade];
+            const query = 'INSERT INTO grades VALUES ($1, $2, $3) RETURNING *';
+            const values = [body.id_user, body.id_exam, body.grade];
             try {
                 const response = await conn.query(query, values);
                 return res.status(200).json(response.rows[0]);
