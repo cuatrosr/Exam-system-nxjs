@@ -14,7 +14,7 @@ export default async (req, res) => {
             }
         case 'POST':
             const query = 'SELECT * FROM users u WHERE u.username=$1';
-            const values = [req.query.username];
+            const values = [body.username];
             const response = await conn.query(query, values);
             if (response.rows[0] === undefined) {
                 const query = 'INSERT INTO users(username, password, user_type) VALUES ($1, $2, $3) RETURNING *';

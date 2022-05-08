@@ -7,18 +7,6 @@ export default class Header extends Component{
         return(
             <Head>
                 <title>{this.props.title}</title>
-                <link 
-                    href="https://bootswatch.com/5/journal/bootstrap.min.css" 
-                    rel="stylesheet"
-                />
-                <link
-                    rel="stylesheet"
-                    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-                />
-                <link
-                    rel="stylesheet"
-                    href="https://fonts.googleapis.com/icon?family=Material+Icons"
-                />
             </Head>
         )
     }
