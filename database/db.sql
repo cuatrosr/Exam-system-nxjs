@@ -13,20 +13,20 @@ CREATE TABLE IF NOT EXISTS exams
     id          SERIAL PRIMARY KEY,
     access_code INTEGER     NOT NULL,
     id_creator  INTEGER     NOT NULL,
-    title       VARCHAR(32) NOT NULL,
-    description VARCHAR(32) NOT NULL,
+    title       VARCHAR(200) NOT NULL,
+    description VARCHAR(200) NOT NULL,
     CONSTRAINT fk_exams FOREIGN KEY (id_creator) REFERENCES users (id)
 );
 
 CREATE TABLE IF NOT EXISTS questions
 (
     id                  SERIAL PRIMARY KEY,
-    description         VARCHAR(32)   NOT NULL,
-    option1             VARCHAR(32)   NOT NULL,
-    option2             VARCHAR(32)   NOT NULL,
-    option3             VARCHAR(32)   NOT NULL,
-    option4             VARCHAR(32)   NOT NULL,
-    correct_answer      VARCHAR(32)   NOT NULL,
+    description         VARCHAR(200)   NOT NULL,
+    option1             VARCHAR(200)   NOT NULL,
+    option2             VARCHAR(200)   NOT NULL,
+    option3             VARCHAR(200)   NOT NULL,
+    option4             VARCHAR(200)   NOT NULL,
+    correct_answer      VARCHAR(200)   NOT NULL,
     question_percentage NUMERIC(3, 2) NOT NULL,
     CHECK (question_percentage >= 0 AND question_percentage < 1),
     id_exam             INTEGER       NOT NULL,
