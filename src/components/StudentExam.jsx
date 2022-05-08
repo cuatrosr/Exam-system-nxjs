@@ -21,16 +21,25 @@ export default function StudentExam({user, exam, questions}) {
             confirmButtonColor: '#6C757D',
             denyButtonColor: '#808080'
         }).then(async (result) => {
-            let config = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(values)
-            };
             if (result.isConfirmed) {
+                let valuesJson = Object.getOwnPropertyNames(values);
+                let grade = 0;
+                for (let i = 0; i < questions.length; i++) {
+                    grade += (values[valuesJson[i]] === questions[i].correct_answer) ? 5*questions[i].question_percentage : 0;
+                }
+                values['grade'] = grade;
+                values['id_user'] = user.id;
+                values['id_exam'] = exam.id;
+                let config = {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(values)
+                };
                 const response = await fetch('http://localhost:3000/api/grades', config);
+                const data = await response.json();
                 if (response.status === 200) {
                     Swal.fire({
                         icon: 'success',
@@ -39,6 +48,13 @@ export default function StudentExam({user, exam, questions}) {
                         timer: 1500
                     });
                     await router.push('/student/' + user.username);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: data.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             }
         })

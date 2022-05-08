@@ -9,7 +9,7 @@ export default async (req, res) => {
             if (response.rows[0] === undefined) {
                 return res.status(404).json({access_code: req.query.access_code});
             } else {
-                return res.status(200).json(response.rows);
+                return res.status(200).json(response.rows[0]);
             }
         default:
             return res.status(400).json('method not allowed');

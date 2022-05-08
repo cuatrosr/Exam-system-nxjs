@@ -2,17 +2,33 @@ import styles from "../styles/form.module.css"
 import * as Yup from "yup";
 import {useRouter} from "next/router";
 import {Formik, Field, Form} from "formik";
+import Swal from "sweetalert2";
 
 export default function ExamForm({user}) {
     const router = useRouter();
     const handleSubmit = async (values, {resetForm}) => {
         let config = {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
+            }
+        };
+        const res = await fetch('/api/grades/' + values.access_code + `?username=${user.username}`, config);
+        if (res.status === 200) {
+            const data = await res.json();
+            Swal.fire({
+                icon: 'info',
+                text: `Your exam grade is: ${data.grade}`,
+                showConfirmButton: true
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: `You haven't do the exam yet`,
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     };
     return (

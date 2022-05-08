@@ -18,12 +18,17 @@ export default function ExamForm({user}) {
         if (res.status === 200) {
             res = await fetch('/api/questions/' + values.access_code, config);
             if (res.status === 200) {
-                Swal.fire({
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                await router.push('/student/exam/' + values.access_code + '?username=' + user.username);
+                res = await fetch('/api/grades/' + values.access_code + '?username=' + user.username, config);
+                if (res.status === 200) {
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'You already do this exam',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else {
+                    await router.push('/student/exam/' + values.access_code + '?username=' + user.username);
+                }
             } else {
                 Swal.fire({
                     icon: 'question',

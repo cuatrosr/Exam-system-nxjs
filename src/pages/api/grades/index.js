@@ -13,7 +13,7 @@ export default async (req, res) => {
                 return res.status(400).json('error');
             }
         case 'POST':
-            const query = 'INSERT INTO grades VALUES ($1, $2, $3) RETURNING *';
+            const query = 'INSERT INTO grades(id_user, id_exam, grade) VALUES ($1, $2, $3) RETURNING *';
             const values = [body.id_user, body.id_exam, body.grade];
             try {
                 const response = await conn.query(query, values);
