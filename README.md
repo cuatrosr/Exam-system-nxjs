@@ -1,7 +1,7 @@
 # ***Exam System*** 💻️
 
 <p align="justify">
-    <i>Given a teacher registered in the system, they would be able to create and show exams which should have an access code, title, description and options. Moreover, once the exam is onto the platform, a student previously registered in the database can get into this exam given an access code and, then solve it answering the predefined options with weighted questions. Finally, once the exam is solved, the system provides a grade depending on the correct answers.</>
+    <i>Given a teacher registered in the system, they would be able to create and show exams which should have an access code, title, description and options. Moreover, once the exam is onto the platform, a student previously registered in the database can get into this exam given an access code and, then solve it answering the predefined options with weighted questions. Finally, once the exam is solved, the system provides a grade depending on the correct answers.</i>
 </p>
 
 ## ***Build With*** 🛠️
